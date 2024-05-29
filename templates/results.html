@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css');
+
+        body {
+            margin: auto;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow: auto;
+            background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+            animation: gradient 15s ease infinite;
+            background-size: 400% 400%;
+            background-attachment: fixed;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        .wave {
+            background: rgb(255 255 255 / 25%);
+            border-radius: 1000% 1000% 0 0;
+            position: fixed;
+            width: 200%;
+            height: 12em;
+            animation: wave 10s -3s linear infinite;
+            transform: translate3d(0, 0, 0);
+            opacity: 0.8;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .wave:nth-of-type(2) {
+            bottom: -1.25em;
+            animation: wave 18s linear reverse infinite;
+            opacity: 0.8;
+        }
+
+        .wave:nth-of-type(3) {
+            bottom: -2.5em;
+            animation: wave 20s -1s reverse infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes wave {
+            2% {
+                transform: translateX(1);
+            }
+
+            25% {
+                transform: translateX(-25%);
+            }
+
+            50% {
+                transform: translateX(-50%);
+            }
+
+            75% {
+                transform: translateX(-25%);
+            }
+
+            100% {
+                transform: translateX(1);
+            }
+        }
+    </style>
+</head>
+<body>
+  <table class="table-auto w-full">
+    <thead>
+      <tr class="bg-blue-200">
+        <th class="px-4 py-2">Date</th>
+        <th class="px-4 py-2">Age</th>
+        <th class="px-4 py-2">Gender</th>
+        <th class="px-4 py-2">Air Pollution</th>
+        <th class="px-4 py-2">Alcohol Use</th>
+        <th class="px-4 py-2">Dust Allergy</th>
+        <th class="px-4 py-2">Occupational Hazards</th>
+        <th class="px-4 py-2">Genetic Risk</th>
+        <th class="px-4 py-2">Chronic Lung Disease</th>
+        <th class="px-4 py-2">Balanced Diet</th>
+        <th class="px-4 py-2">Obesity</th>
+        <th class="px-4 py-2">Smoking</th>
+        <th class="px-4 py-2">Passive Smoker</th>
+        <th class="px-4 py-2">Chest Pain</th>
+        <th class="px-4 py-2">Coughing of Blood</th>
+        <th class="px-4 py-2">Fatigue</th>
+        <th class="px-4 py-2">Weight Loss</th>
+        <th class="px-4 py-2">Shortness of Breath</th>
+        <th class="px-4 py-2">Wheezing</th>
+        <th class="px-4 py-2">Swallowing Difficulty</th>
+        <th class="px-4 py-2">Clubbing of Finger Nails</th>
+        <th class="px-4 py-2">Frequent Cold</th>
+        <th class="px-4 py-2">Dry Cough</th>
+        <th class="px-4 py-2">Snoring</th>
+        <th class="px-4 py-2">Diagnosis</th>
+      </tr>
+    </thead>
+    <tbody>
+          {% for prediction in request.user.prediction_set.all %}
+          <tr>
+            <td class="border px-4 py-2">{{ prediction.created_at|date:'Y-m-d' }}</td>
+            <td class="border px-4 py-2">{{ prediction.age }}</td>
+            <td class="border px-4 py-2">{{ prediction.gender }}</td>
+            <td class="border px-4 py-2">{{ prediction.air_pollution }}</td>
+            <td class="border px-4 py-2">{{ prediction.alcohol_use }}</td>
+            <td class="border px-4 py-2">{{ prediction.dust_allergy }}</td>
+            <td class="border px-4 py-2">{{ prediction.occupational_hazards }}</td>
+            <td class="border px-4 py-2">{{ prediction.genetic_risk }}</td>
+            <td class="border px-4 py-2">{{ prediction.chronic_lung_disease }}</td>
+            <td class="border px-4 py-2">{{ prediction.balanced_diet }}</td>
+            <td class="border px-4 py-2">{{ prediction.obesity }}</td>
+            <td class="border px-4 py-2">{{ prediction.smoking }}</td>
+            <td class="border px-4 py-2">{{ prediction.passive_smoker }}</td>
+            <td class="border px-4 py-2">{{ prediction.chest_pain }}</td>
+            <td class="border px-4 py-2">{{ prediction.coughing_of_blood }}</td>
+            <td class="border px-4 py-2">{{ prediction.fatigue }}</td>
+            <td class="border px-4 py-2">{{ prediction.weight_loss }}</td>
+            <td class="border px-4 py-2">{{ prediction.shortness_of_breath }}</td>
+            <td class="border px-4 py-2">{{ prediction.wheezing }}</td>
+            <td class="border px-4 py-2">{{ prediction.swallowing_difficulty }}</td>
+            <td class="border px-4 py-2">{{ prediction.clubbing_of_finger_nails }}</td>
+            <td class="border px-4 py-2">{{ prediction.frequent_cold }}</td>
+            <td class="border px-4 py-2">{{ prediction.dry_cough }}</td>
+            <td class="border px-4 py-2">{{ prediction.snoring }}</td>
+            <td class="border px-4 py-2">
+              <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                {{ prediction.diagnosis }}
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</body>
+</html>
+

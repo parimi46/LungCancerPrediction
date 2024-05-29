@@ -1,0 +1,164 @@
+{% load static %}
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create an Acoount</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.17/tailwind.min.css">	
+    <style>
+        body{
+        background-size: cover;
+        }
+         html, body {
+            width: 100%;
+            height:100%;
+           }
+           
+           body {
+              background: linear-gradient(-45deg, #d2151e, #e73c7e, #23a6d5, rgba(14, 233, 94, 0.916));
+              background-size: 400% 400%;
+              animation: gradient 15s ease infinite;
+              width: 900px;
+              height: 100px;
+           }
+           
+           @keyframes gradient {
+              0% {
+                 background-position: 0% 50%;
+              }
+              50% {
+                 background-position: 100% 50%;
+              }
+              100% {
+                 background-position: 0% 50%;
+              }
+           }
+         .signup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #24b0d3;
+            padding: 60px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(229, 13, 13, 0.2);
+         }
+         @import url('https://fonts.googleapis.com/css?family=Dancing+Script&display=swap');
+   
+            .font-cursive {
+            font-family: 'Dancing Script', cursive;
+            padding:10px;
+            }
+           input {
+           width: 300px;
+   }
+         mess{
+         text-align: center;
+         font-weight: bold;
+         color: red;
+         font-size:35px;
+         text-shadow: 4px 2px 5px red;
+         }
+    </style>
+    <script>
+      function val() {
+        var fn = document.getElementById("first_name").value;
+        var nameTest = fn.match(/^[a-zA-Z]+$/);
+        if (nameTest == null || fn == "") {
+          alert("Please enter a valid first name with only letters.");
+          return false;
+        }
+        var ln = document.getElementById("last_name").value;
+        var nameTest = ln.match(/^[a-zA-Z]+$/);
+        if (nameTest == null || ln == "") {
+          alert("Please enter a valid last name with only letters.");
+          return false;
+        }
+        var u = document.getElementById("username").value;
+        var nameTest = u.match(/^[a-zA-Z0-9]+$/);
+        if (nameTest == null || u == "") {
+          alert("Please enter a valid username with only letters and numbers.");
+          return false;
+        }
+        var e = document.getElementById("email").value;
+        var emailTest = e.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/);
+        if (emailTest == null || e == "") {
+          alert("Please enter a valid email address.");
+          return false;
+        }
+        var p1 = document.getElementById("password1").value;
+        var p2 = document.getElementById("password2").value;
+        if (p1 == "" || p2 == "" || p1 != p2) {
+          alert("Passwords do not match or are empty. Please enter a valid password.");
+          return false;
+        }
+        return true;
+      }
+      </script>
+</head>
+<body>
+<ul>
+    <!--li style="background-color: rgb(20, 48, 204);"><a class="active" href="signup">Create an Account</a></li>
+    <li><a class="active" href="signin">SignIn</a></li>
+    <li style="float:left"><a href="home"><tit><b><i>LC Cancer Prediction</i></b></tit></a></li-->
+</ul>
+<mess>
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+</mess>
+<div id="frm">
+   <div class="flex flex-row items-center h-screen">
+      <div>
+        <h1 class="text-8xl font-cursive">Sign Up</h1>
+      </div>
+    </div>
+    <form action="{% url 'signup' %}" method="post" name="reg" onsubmit="return(val())">
+        {% csrf_token %}
+       <div class="signup">
+         <div class="mb-4">
+            <label for="name" class="block text-gray-700 font-bold mb-2">First Name</label>
+            <input type="text" id="first_name" name="first_name" class="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
+         </div>
+      
+         <div class="mb-4">
+            <label for="age" class="block text-gray-700 font-bold mb-2">Last Name</label>
+            <input type="text" id="last_name" name="last_name" class="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
+            
+         </div>
+         <div class="mb-4">
+            <label for="age" class="block text-gray-700 font-bold mb-2">Username</label>
+            <input type="text" id="username" name="username" class="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
+            
+         </div>
+         <div class="mb-4">
+            <label for="age" class="block text-gray-700 font-bold mb-2">Email</label>
+            <input type="email" id="email" name="email" class="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
+            
+         </div>
+         <div class="mb-4">
+            <label for="age" class="block text-gray-700 font-bold mb-2">Password</label>
+            <input type="password" id="password1" name="password1" class="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
+            
+         </div>
+         <div class="mb-4">
+            <label for="age" class="block text-gray-700 font-bold mb-2">Re-Enter Password</label>
+            <input type="password" id="password2" name="password2" class="bg-white appearance-none border-2 border-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
+            
+         </div>
+         <a href="#"><button type="submit" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">SignUp</button></a><br><br>
+         <div class="mb-4">
+            <a href="#" class="inline-block align-baseline font-bold text-sm text-purple-500 hover:text-purple-800">Already have an account?</a>
+            <a href="signin" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</a>
+       </div>
+ 
+   </div>
+      </form>
+</div>
+<mess>
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+</mess>
+</body>
+</html>

@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LC Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #d910ae;
+            font-size: 25px;
+            letter-spacing: 1px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+        }
+        li {
+            float: right;
+        }
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px 20px;
+            text-decoration: none;
+        }
+        li a:hover {
+            background-color: #c88108;
+        }
+        li a:active {
+            background-color: rgb(229, 230, 235);
+        }
+        mess {
+            text-align: center;
+            font-weight: bold;
+            color: red;
+            font-size: 35px;
+            text-shadow: 4px 2px 5px red;
+        }
+        .card {
+            position: relative;
+            width: 300px;
+            height: 320px;
+            background: lightgrey;
+            box-shadow: #d11bff42 0 15px 40px -5px;
+            z-index: 1;
+            border-radius: 21px;
+            overflow: hidden;
+            padding: 20px;
+            margin-top: 50px;
+        }
+        .card__content {
+            background: linear-gradient(rgba(255, 255, 255, 0.473), rgba(150, 150, 150, 0.25));
+            z-index: 1;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 21px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .card .blob {
+            position: absolute;
+            z-index: -1;
+            border-radius: 5em;
+            width: 200px;
+            height: 200px;
+        }
+        .card .blob:nth-child(2) {
+            left: -30px;
+            top: -40px;
+            background: #ff930f;
+        }
+        .card .blob:nth-child(3) {
+            left: 180px;
+            top: -20px;
+            z-index: -1;
+            background: #bf0fff;
+        }
+        .card .blob:nth-child(4) {
+            left: -40px;
+            top: 160px;
+            background: #ff1b6b;
+        }
+        .card .blob:nth-child(5) {
+            left: 180px;
+            top: 180px;
+            background: #0061ff;
+        }
+        form {
+            position: relative;
+            z-index: 2;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+        input[type=text], input[type=email], input[type=number], input[type=password] {
+            background-color: #ECF9FF;
+            color: #000000;
+            outline: none;
+            padding: 8px;
+            width: 100%;
+            border: none;
+            margin: 10px 0;
+            border-bottom: 2px solid #ECF9FF;
+            font-weight: bold;
+            font-size: 16px;
+            font-style: italic;
+            font-family: Helvetica;
+            border-radius: 5px;
+        }
+        .card p {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .card p a {
+            color: #d910ae;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .btn-3d {
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #1D4ED8;
+            border: none;
+            border-radius: 0.375rem;
+            box-shadow: 0 4px #1E40AF, 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-3d:hover {
+            background-color: #2563EB;
+            box-shadow: 0 6px #1E40AF, 0 6px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        .btn-3d:active {
+            box-shadow: 0 2px #1E40AF, 0 2px 5px rgba(0, 0, 0, 0.2);
+            transform: translateY(2px);
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><a class="active" href="signup">Create an Account</a></li>
+    <li><a class="active" href="signin">SignIn</a></li>
+    <li style="float:left"><a href="home"><b><i>LC Cancer Prediction</i></b></a></li>
+</ul>
+<mess>
+    {% for message in messages %}
+    <h3>{{ message }}</h3>
+    {% endfor %}
+</mess>
+
+<!-- Card Component with Blobs -->
+<div class="card">
+    <div class="card__content">
+        <form action="signin" method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Login" class="btn-3d">
+            <input type="button" id="btn" value="Forgot password" class="btn-3d mt-2">
+            <p>Don't have an account? <a href="signup">Sign up</a></p>
+        </form>
+    </div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+</div>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+<script>
+VANTA.FOG({
+  el: "body",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00
+})
+</script>
+</html>

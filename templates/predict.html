@@ -1,0 +1,156 @@
+{% load static %}
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body{
+         background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+        background-size: cover;
+        }
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color:#E11299;
+            font-size: 25px;
+            letter-spacing: 1px;
+         }
+         li{
+            float: right;
+         }
+         li a{
+            display: block;
+            color:#FFEAEA;
+            text-align: center;
+            padding: 16px 20px;
+            text-decoration: none;
+         }
+         li a:hover{
+            background-color: AA77FF;
+         }
+        li a:active{
+            background-color: rgb(223, 107, 13);
+         }
+         #frm
+         {
+            font-size: 25px;
+            font-weight: bold;
+            color:#2460A7FF;
+            background-color:F2CD5C;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            font-family: sans-serif;
+         }
+         input[type=text],input[type=range],input[type=number]
+         {
+            background-color: rgb(230, 233, 236);
+            color:#000000;
+            outline: none;
+            padding-top: 1%;
+            padding-bottom: 1%;
+            width: 100%;
+            border: none;
+            margin: 10px 0;
+            border-bottom: 2px solid #85B3D1FF;
+            font-weight:bold;
+            font-size: 20px;
+            font-style: bold;
+            font-family: Helvetica;
+         }
+        
+         mess{
+         text-align: center;
+         font-weight: bold;
+         color: red;
+         font-size:35px;
+         text-shadow: 4px 2px 5px red;
+         }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<ul>
+    <li><a class="active" href="home">LogOut</a></li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'user_profile' %}">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'results' %}">Results</a>
+    </li>
+</ul>
+</nav>
+<mess>
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+</mess>
+<div id="frm">
+    <form action="predict" method="post">
+        {% csrf_token %}
+        <label for ="Age"> Age :</label>
+        <input type="number" id="Age" name="Age" required><br>
+        <label for ="Gender"> Gender(Male=1/female=2) :</label>
+        <input type="number" id="Gender" name="Gender" required><br>
+        <label for ="Air Pollution"> Air pollution On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Air Pollution" name="Air Pollution" min="0" max="8"required><br>
+        <label for ="Alcohol use"> Alcohol use On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Alcohol use" name="Alcohol use" min="0" max="8"required><br>
+        <label for ="Dust Allergy"> Dust Allergy On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Dust Allergy" name="Dust Allergy" min="0" max="8"required><br>
+        <label for ="OccuPational Hazards"> OccuPational Hazards On the Scale of 1 1o 8 :</label>
+        <input type="range" id="OccuPational Hazards" name="OccuPational Hazards" min="0" max="8"required><br>
+        <label for ="Genetic Risk"> Genetic Risk On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Genetic Risk" name="Genetic Risk" min="0" max="8"required><br>
+        <label for ="chronic Lung Disease"> chronic Lung Disease On the Scale of 1 1o 8 :</label>
+        <input type="range" id="chronic Lung Disease" name="chronic Lung Disease" min="0" max="8"required><br>
+        <label for ="Balanced Diet"> Balanced Diet On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Balanced Diet" name="Balanced Diet" min="0" max="8"required><br>
+        <label for ="Obesity"> Obesity On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Obesity" name="Obesity" min="0" max="8"required><br>
+        <label for ="Smoking"> Smoking On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Smoking" name="Smoking" min="0" max="8"required><br>
+        <label for ="Passive Smoker"> Passive Smoker On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Passive Smoker" name="Passive Smoker" min="0" max="8"required><br>
+        <label for ="Chest Pain"> Chest Pain On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Chest Pain" name="Chest Pain" min="0" max="8"required><br>
+        <label for ="Coughing of Blood"> Coughing of Blood On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Coughing of Blood" name="Coughing of Blood" min="0" max="8"required><br>
+        <label for ="Fatigue"> Fatigue On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Fatigue" name="Fatigue" min="0" max="8"required><br>
+        <label for ="Weight Loss"> Weight Loss On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Weight Loss" name="Weight Loss" min="0" max="8"required><br>
+        <label for ="Shortness of Breath"> Shortness of Breath On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Shortness of Breath" name="Shortness of Breath" min="0" max="8"required><br>
+        <label for ="Wheezing"> Wheezing On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Wheezing" name="Wheezing" min="0" max="8"required><br>
+        <label for ="Swallowing Difficulty"> Swallowing Difficulty On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Swallowing Difficulty" name="Swallowing Difficulty" min="0" max="8"required><br>
+        <label for ="Clubbing of Finger Nails"> Clubbing of Finger Nails On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Clubbing of Finger Nails" name="Clubbing of Finger Nails" min="0" max="8"required><br>
+        <label for ="Frequent Cold"> Frequent Cold On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Frequent Cold" name="Frequent Cold" min="0" max="8"required><br>
+        <label for ="Dry Cough"> Dry Cough On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Dry Cough" name="Dry Cough" min="0" max="8"required><br>
+        <label for ="Snoring"> Snoring On the Scale of 1 1o 8 :</label>
+        <input type="range" id="Snoring" name="Snoring" min="0" max="8"required><br>
+        <input type="submit" id="btn" value="Predict" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-md transform transition-transform duration-300 hover:scale-105">
+
+
+    </form>
+</div>
+<mess>
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+</mess>
+
+
+
+</body>
+</html>

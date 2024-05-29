@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LC Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .gradient {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(334deg, #6b97f7, #7525e2, #f7137e);
+            background-size: 180% 180%;
+            animation: gradient-animation 6s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #e51dac;
+            font-size: 25px;
+            letter-spacing: 1px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+        }
+        li {
+            float: right;
+        }
+        li a {
+            display: block;
+            color: rgb(243, 243, 249);
+            text-align: center;
+            padding: 16px 20px;
+            text-decoration: none;
+        }
+        li a:hover {
+            background-color: #d86406;
+        }
+        li a:active {
+            background-color: rgb(20, 48, 204);
+        }
+        h2 {
+            color: red;
+            text-shadow: 4px 2px 5px red;
+            font-size: 50px;
+        }
+        p {
+            color: white;
+            font-size: 30px;
+        }
+        p2 {
+            color: white;
+            font-size: 100px;
+        }
+        tit {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="gradient">
+    <ul>
+        <li><a class="active" href="signup">Create an Account</a></li>
+        <li><a class="active" href="signin">SignIn</a></li>
+        <li><a class="active" href="{% url 'base' %}">Guide</a></li>
+        <li style="float:left"><a href=""><tit><b><i>Lung Cancer Prediction</i></b></tit></a></li>
+    </ul>
+    <h2>Get to know about your health</h2>
+    <p>Smarter Easier to predict Lung Cancer<br>With the symptoms, we predict the cancer</p>
+    <h2>With Accuracy<br></h2>
+    <p2>"99.2%"</p2>
+</div>
+</body>
+</html>
+

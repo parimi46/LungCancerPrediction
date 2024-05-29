@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Add Tailwind CSS CDN link -->
+  <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css" integrity="sha512-ry/BbLwYJrGY1kG8dRcc/7B+aOYYcw0p9V/qN1vxq3NzPGk1YbJLs/QsPdFp7lBDGKyfTBJTtT8zliLnZaVggw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  < Add custom CSS styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  
+  <style>
+    body
+    {
+        background-color:#10e8ef;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    p {
+      line-height: 1.5;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Add custom arrow styles */
+    .arrow {
+        margin: 20px auto;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: #cc1215;
+        color: #f7f5f3;
+        margin: 0 auto;
+      }
+
+      .arrow:before {
+        content: "\2192";
+        font-size: 16px;
+        transform: rotate(90deg);
+      }
+  </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="center-align">Welcome to the Lung Cancer Prediction Project</h1>
+        <p>When the project is opened, the home page is displayed to the user.</p>
+        <div class="arrow"></div>
+        <p>The home page contains 5 options, including a signup page for new users to create an account, a login page for existing users to access their account, an "About Us" page to provide information about the project, a "How to Use" page to guide users on how to use the project, and a "Result" page that displays the accuracy of the machine learning model used for lung cancer prediction.</p>
+        <div class="arrow"></div>
+        <p>To use the project, a new user must sign up by filling in their required credentials, including a username and password, for the first time.</p>
+        <div class="arrow"></div>
+        <p>An existing user can log in directly by entering their username and password.</p>
+        <div class="arrow"></div>
+        <p>After logging in, the user is directed to the lung cancer prediction page, where they are prompted to enter specific parameters, such as age and other factors on a scale of 1 to 8, to predict the likelihood of lung cancer.</p>
+        <div class="arrow"></div>
+        <p>Based on the parameters entered, the machine learning model predicts whether the patient has lung cancer or not.</p>
+        <div class="arrow"></div>
+        <p>Users can view the history of previous predictions by accessing the "Result" page, which displays the parameters.</p>
+        
+      </div>
+      
+</body>
+    
